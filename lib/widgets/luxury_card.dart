@@ -16,7 +16,7 @@ class LuxuryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 320,
+      width: 280,
       height: 500,
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
