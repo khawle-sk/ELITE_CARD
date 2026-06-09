@@ -10,9 +10,17 @@ class EliteCardApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+
+      title: 'Elite Card',
+
+      theme: ThemeData(
+        fontFamily: 'Roboto',
+      ),
+
+      home: const HomePage(),
     );
   }
 }
