@@ -121,27 +121,63 @@
 //   }
 // }
 
+// import 'package:flutter/material.dart';
+// import '../screens/home_page.dart';
+// import '../screens/creation.dart';
+
+// void main() {
+//   runApp(const MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       title: 'Elite Card',
+//       // home: HomePage(),
+//       home: StudioPage(), // <-- Page affichée au démarrage
+//     );
+//   }
+// }
+
+
+// ─────────────────────────────────────────────
+//  main.dart
+// ─────────────────────────────────────────────
 
 import 'package:flutter/material.dart';
-import 'package:elite_card/screens/creation.dart'; // <-- 1. Votre import ici
+import 'package:hive_flutter/hive_flutter.dart';
+import 'screens/home_page.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialiser Hive avec le dossier local de l'app
+  await Hive.initFlutter();
+
+  // Ouvrir la box des cartes (créée automatiquement si elle n'existe pas)
+  await Hive.openBox('cards');
+
+  runApp(const LuxStackApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class LuxStackApp extends StatelessWidget {
+  const LuxStackApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Elite Card',
+      title: 'LUX STACK',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: const Color(0xFF030712),
+        fontFamily: 'Inter', // optionnel, selon vos assets
       ),
-      // <-- 2. C'est ici que vous définissez la page de démarrage
-      home: const StudioPage(), 
+      home: const HomePage(),
     );
   }
 }
